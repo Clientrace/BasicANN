@@ -17,8 +17,8 @@ class Layer(object):
 	def setData(self, data, n):
 		self.nodes[n] = data
 
-	def setWeight(self, w):
-		self.weight = weight
-
-	def getWeight(self):
-		return self.weight
+	def setWeight(self, w, n):
+		self.weight[n] = w
+		
+	def getWeight(self, n):
+		return self.weights[n]
