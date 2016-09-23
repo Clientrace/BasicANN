@@ -59,20 +59,19 @@ def init():
 #------------------------
 
 def testANN(input1, input2):
-	print("testing...")
 	global trainingFile
 	global inputLayer
 	global hiddenLayer
 	global outputLayer
 
-	print("training...")
-
 	idealOutput = getXOR(input1,input2)
+	print("Expected Output: "+str(idealOutput))
 
 	inputLayer.setData(input1,0)
 	inputLayer.setData(input2,1)
 
-	outputLayer.setData(idealOutput,0)
+	outputLayer.setData(0,0)
+
 
 	#Calculate hidden layer values
 	for i in range(0,3):
@@ -88,21 +87,22 @@ def testANN(input1, input2):
 		outputVal+=outputLayer.getWeight(i)*hiddenLayer.getData(i)
 	outputLayer.setData(outputVal,0)
 
+	MOE = outputLayer.getData(0) - idealOutput
 
-def train(input1, input2):
+
+def trainANN(input1, input2):
 	global trainingFile
 	global inputLayer
 	global hiddenLayer
 	global outputLayer
 
-	print("training...")
-
 	idealOutput = getXOR(input1,input2)
+	print("Expected Output: "+str(idealOutput))
 
 	inputLayer.setData(input1,0)
 	inputLayer.setData(input2,1)
 
-	outputLayer.setData(idealOutput,0)
+	outputLayer.setData(0,0)
 
 	#Calculate hidden layer values
 	for i in range(0,3):
@@ -117,6 +117,11 @@ def train(input1, input2):
 		outputLayer.getWeight(i)*hiddenLayer.getData(i)
 		outputVal+=outputLayer.getWeight(i)*hiddenLayer.getData(i)
 	outputLayer.setData(outputVal,0)
+
+	#Calculate the margin of Error
+	MOE = idealOutput - outputLayer.getData(0)
+	showStruct()
+	print("Margin Of Error: "+str(MOE))
 	
 
 
@@ -166,9 +171,16 @@ def main():
 			i = input()
 			print("Enter input2: ")
 			i2 = input()
-			train(i,i2)
-			showStruct()
+			testANN(i,i2)
 			learned = True
+			showStruct()
+		if(command == "train"):
+			print("Enter input1: ")
+			i = input()
+			print("Enter input2: ")
+			i2 = input()
+			learned = True
+			trainANN(i, i2)
 		if(command == "showstruct"):
 			showStruct()
 	
