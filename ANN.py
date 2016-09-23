@@ -25,6 +25,7 @@ global trainingFile
 global inputLayer
 global hiddeLayer
 global outputLayer
+global learned
 
 
 #Get XOR Value For The Training
@@ -126,13 +127,22 @@ def showStruct():
 	global inputLayer
 	global hiddenLayer
 	global outputLayer
-	print("+-------+-----------------------+------------------------+")
-	print("| INPUT | HIDDEN \t\t| OUTPUT\t\t |")
-	print("+-------+-----------------------+------------------------+")
-	print("| "+str(inputLayer.getData(0))+"\t| "+str(hiddenLayer.getData(0))+"\t| "+str(outputLayer.getData(0))+"\t |")
-	print("| "+str(inputLayer.getData(1))+"\t| "+str(hiddenLayer.getData(1))+"\t| \t\t\t |")
-	print("| \t| "+str(hiddenLayer.getData(2))+"\t| \t\t\t |")
-	print("+-------+-----------------------+------------------------+")
+	if learned:
+		print("+-------+-----------------------+------------------------+")
+		print("| INPUT | HIDDEN \t\t| OUTPUT\t\t |")
+		print("+-------+-----------------------+------------------------+")
+		print("| "+str(inputLayer.getData(0))+"\t| "+str(hiddenLayer.getData(0))+"\t| "+str(outputLayer.getData(0))+"\t |")
+		print("| "+str(inputLayer.getData(1))+"\t| "+str(hiddenLayer.getData(1))+"\t| \t\t\t |")
+		print("| \t| "+str(hiddenLayer.getData(2))+"\t| \t\t\t |")
+		print("+-------+-----------------------+------------------------+")
+	else:
+		print("+-------+-----------------------+------------------------+")
+		print("| INPUT | HIDDEN                | OUTPUT 				|")
+		print("+-------+-----------------------+------------------------+")
+		print("| 0     | 0					   | 0						|")
+		print("| 0     | 0					   |						|")
+		print("|       | 0					   |						|")
+		print("+-------+-----------------------+------------------------+")
 #------------------------
 
 #------------------------
@@ -142,9 +152,12 @@ def showStruct():
 #------------------------
 def main():
 	init()
+	print("Simple ANN (c) 2016")
+	print("-----------------------")
 	while True:
 		print(">> ",end='')
 		command = input()
+		print(command)
 		if(command == "test"):
 			print("Enter input1: ")
 			i = input()
@@ -152,6 +165,7 @@ def main():
 			i2 = input()
 			train(i,i2)
 			showStruct()
+			learned = True
 		if(command == "showstruct"):
 			showStruct()
 	
