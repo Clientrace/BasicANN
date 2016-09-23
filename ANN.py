@@ -127,6 +127,7 @@ def showStruct():
 	global inputLayer
 	global hiddenLayer
 	global outputLayer
+	global learned
 	if learned:
 		print("+-------+-----------------------+------------------------+")
 		print("| INPUT | HIDDEN \t\t| OUTPUT\t\t |")
@@ -151,6 +152,8 @@ def showStruct():
 #main function
 #------------------------
 def main():
+	global learned
+	
 	init()
 	print("Simple ANN (c) 2016")
 	print("-----------------------")
