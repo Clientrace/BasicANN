@@ -1,4 +1,10 @@
-from Nodes import NodeList
+from MultiNode import NodeList
+
+"""
+	Author: Kim Clarence Penaflor
+	Email:  pkimclarence@yahoo.com.ph |
+			clientrace4869@gmail.com
+"""
 
 #------------------------
 #
@@ -11,10 +17,4 @@ from Nodes import NodeList
 # 1 1		1
 #
 #------------------------
-
-
-samp = NodeList(10)
-
-
-
 
