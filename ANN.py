@@ -1,5 +1,5 @@
 import random
-from MultiNode import Node
+from Layer import Layer
 
 
 """
@@ -20,67 +20,82 @@ from MultiNode import Node
 #
 #------------------------
 
-global Input1
-global Input2
-global Hidden1
-global Hidden2
-global Hidden3
-global Output
 global trainingFile
+global inputLayer
+global hiddeLayer
+global outputLayer
 
-#get xor value for the training
+
+#Get XOR Value For The Training
 #------------------------
 def getXOR(input1, input2):
 	if(input1==input2):
 		return 0
 	return 1
 
-
-#initialize the nodes
+#Initialize The Nodes
 #------------------------
 def init():
-
 	global trainingFile
-	global Input1
-	global Input2
-	global Hidden1
-	global Hidden2
-	global Hidden3
-	global Output
+	global inputLayer
+	global hiddenLayer
+	global outputLayer
 
-	#load training file
-	trainingFile = open('TrainingFiles/tf.ann','a')
-
-	#Input Layers
-	Input1 = Node(3)
-	Input2 = Node(0)
-
-	#Hidden Layers
-	Hidden1 = Node(2)
-	Hidden2 = Node(0)
+	inputLayer = Layer("InputLayer",2)
+	hiddenLayer = Layer("HiddenLayer",3)
+	outputLayer = Layer("OutputLayer",1)
 	
-	Hidden3 = Node(0)
-
-	#Output Layer
-	Output = Node(1)
-
-	#Connect the layers
-	Input1.connect(Hidden1,Hidden2,Hidden3)
-	Hidden1.connect(Input1,Input2,None)
-	Hidden2.connect(Input1,Input2,None)
-	Hidden3.connect(Input1,Input2,None)
-	Output.connect(Hidden1,Hidden2,Hidden3)
+	
 #------------------------
 
 def testANN(input1, input2):
 	print("testing...")
 
-def train():
-	print("training..")
+def train(input1, input2):
+	global trainingFile
+	global inputLayer
+	global hiddenLayer
+	global outputLayer
+
+	print("training...")
+
+	idealOutput = getXOR(input1,input2)
+
+	inputLayer.setData(input1,0)
+	inputLayer.setData(input2,1)
+	
+	outputLayer.setData(idealOutput)
+
+	for i in range(0,3):
+		hiddenLayer.setData(0,0)
+
+	
 
 
+#Shows the neural network structure
+#------------------------
+
+def showStruct():
+	print("+-------+--------+-------+")
+	print("| INPUT | HIDDEN | OUTPUT")
+	print("+-------+--------+-------+")
+#------------------------
+
+#------------------------
+
+
+#main function
+#------------------------
 def main():
 	init()
+	print("I: ")
+	i = input()
+	print("I2: ")
+	i2 = input()
+	train(i,i2)
+	
+#------------------------
+
 	
 
 main()

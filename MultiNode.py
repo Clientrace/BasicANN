@@ -9,55 +9,82 @@ class Node(object):
 
 	def __init__(self, data):
 		self.data = data
+		self.next = next
+
+
+	def getData(self):
+		return self.data
+
+	def getNext(self):
+		return self.next
+
+	def setNext(self,next):
+		self.next = next
+
+
+
+#------------------------
+
+class NodeList():
+
+	def __init__(self, name, head1, head2, head3):
+		self.curHead = None
+		self.prev = None
+		self.head1 = head1
+		self.head2 = head2
+		self.head3 = head3
 
 		self.weight1 = random.random()
 		self.weight2 = random.random()
 		self.weight3 = random.random()
 
-		self.head1 = None
-		self.head2 = None
-		self.head3 = None
-
-	def setWeight(self, weight):
-		self.weight = weight
-
-	def getWeigth(self, weight):
-		return self.weight
-
-	def setData(self, data):
-		self.data = data
+		self.name = name
 
 	def getData(self):
-		return self.data
+		return self.curHead.getData()
+
+	def getWeight(self, n):
+		if n==0:
+			return self.weight1
+		if n==1:
+			return self.weight2
+		if(n==2):
+			return self.weight3
+
+	def setWeight(self, weight, n):
+		if n==0:
+			return self.weight1
+		if n==1:
+			return self.weight2
+		if(n==2):
+			return self.weight3
+
+
+	def addNode(self, data, name, n):
+		if n==0:
+			new_node = Node(data)
+			new_node.setNext(self.head1)
+		if n==1:
+			new_node = Node(data)
+			new_node.setNext(self.head2)
+			curHead = new_node
+		if(n==2):
+			new_node = Node(data)
+			new_node.setNext(self.head3)
 
 	def next(self, n):
 		if n==0:
-			return self.head1
-		elif n==1:
-			self.head = self.head2
-			return self.head2
-		elif n==2:
-			self.head = self.n3
-			return self.head3
-		return None
+			prev = curHead
+			curHead = head1
+		if n==1:
+			prev = curHead
+			curHead = head2
+		if n==2:
+			prev = curHead
+			curHead = head3
 
-	def next(self, n, w):
-		if n==0:
-			self.head1.setWeight(w)
-			return self.head1
-		elif n==1:
-			self.head2.setWeight(w)
-			return self.head2
-		elif n==2:
-			self.head3.setWeight(w)
-			return self.head3
-		return None
+	def prev(self, n):
+		curHead = prev
 
 
-	def connect(self, N, N2, N3):
-		self.head1 = N
-		self.head2 = N2
-		self.head3 = N3
-
-#------------------------
 
