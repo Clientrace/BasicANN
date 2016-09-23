@@ -13,10 +13,10 @@ from MultiNode import Node
 # XOR Machine Learning
 #
 # INPUT | IDEAL
-# 0 0		1
-# 0 1		0
-# 1 0		0
-# 1 1		1
+# 0 0		0
+# 0 1		1
+# 1 0		1
+# 1 1		0
 #
 #------------------------
 
@@ -27,6 +27,13 @@ global Hidden2
 global Hidden3
 global Output
 global trainingFile
+
+#get xor value for the training
+#------------------------
+def getXOR(input1, input2):
+	if(input1==input2):
+		return 0
+	return 1
 
 
 #initialize the nodes
