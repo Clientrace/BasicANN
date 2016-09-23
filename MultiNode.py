@@ -7,75 +7,40 @@
 
 class Node(object):
 
-	def __init__(self, data, n1, n2, n3):
+	def __init__(self, data):
 		self.data = data
 		self.weight = 0
-		self.n1 = n1
-		self.n2 = n2
-		self.n3 = n3
+		self.head1 = None
+		self.head2 = None
+		self.head3 = None
+
+	def setWeight(self, weight):
+		self.weight = weight
+
+	def getWeigth(self, weight):
+		return self.weight
+
+	def setData(self, data):
+		self.data = data
 
 	def getData(self):
 		return self.data
 
-	def getN(self, n):
-		if n==0:
-			return self.n1
-		elif n==1:
-			return self.n2
-		elif n==2:
-			return self.n3
-		return None
-		
-	def setN(self, N, n):
-		if n==0:
-			self.n1 = N
-		elif n==1:
-			self.n2 = N
-		elif n==3:
-			self.n3 = N
-
-	def setWeight(self,weight):
-		self.weight = weight
-
-#------------------------
-
-
-
-# Create the Linked List of Nodes
-#	- this is the set of interconnected nodes
-#	 that will be used in ann structure
-#------------------------
-
-class NodeList(object):
-
-	def __init__(self, head):
-		self.head = head
-		self.parent = head
-
-	def insert(self, data, n):
-		if n>3:
-			return None
-		if n==0:
-			new_node = Node(data,n,0,0)
-		elif n==1:
-			new_node = Node(data,0,n,0)
-		elif n==2:
-			new_node = NodeList(data,0,0,n)
-		new_node.setN(self.head,n)
-		self.head = new_node
-
-	def getHead(self):
-		return self.head
-
-	def showData(self):
-		print(self.head.getData())
-
 	def next(self, n):
-		self.head = self.head.getN(n)
+		if n==0:
+			return self.head1
+		elif n==1:
+			self.head = self.head2
+			return self.head2
+		elif n==2:
+			self.head = self.n3
+			return self.head3
+		return None
 
-	def parent(self, n):
-		self.head = self.parent
+	def connect(self, N, N2, N3):
+		self.head1 = N
+		self.head2 = N2
+		self.head3 = N3
 
 #------------------------
-
 

@@ -7,7 +7,7 @@
 
 class Node(object):
 
-	def __init__(self, data, n1, n2, n3):
+	def __init__(self, data):
 		self.data = data
 		self.next = next
 
