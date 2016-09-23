@@ -42,6 +42,16 @@ def getXOR(input1, input2):
 #------------------------
 def sigmoid(t):
 	return (1/(1+math.exp(-t)))
+#------------------------
+
+#Derrivative of Sigmoid
+#This for the computation of MOE slope for 
+#weight adjustments.
+#Formula: d/dx S(x) = (e^-x)/(1+e^-x)^2
+#------------------------
+def sigmoidPrime(t):
+	return (math.exp(-t))/(math.pow((1+math.exp(-t)),2))
+#------------------------
 
 #Initialize The Nodes
 #------------------------
@@ -122,7 +132,20 @@ def trainANN(input1, input2):
 	MOE = idealOutput - outputLayer.getData(0)
 	showStruct()
 	print("Margin Of Error: "+str(MOE))
+
+def showWeights():
+	global trainingFile
+	global inputLayer
+	global hiddenLayer
+	global outputLayer
+
+	print("Input -> HiddenLayer:")
+	for i in range(0,3):
+		print("w["+str(i)+"]:"+str(hiddenLayer.getData(i)))
 	
+	print("HiddenLayer -> OutputLayer:")
+	for i in range(0,3):
+		print("w["+str(i)+"]:"+str(outputLayer.getData(i)))
 
 
 #Shows the neural network structure
@@ -183,6 +206,8 @@ def main():
 			trainANN(i, i2)
 		if(command == "showstruct"):
 			showStruct()
+		if(command == "weights"):
+			showWeights()
 	
 #------------------------
 
